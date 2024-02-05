@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DATA-FETCH</title>
+    <style>
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        border: 2px solid red;
+        gap: 12px;
+        text-align: center;
+      }
+      .items {
+        width: 20%;
+        border: 2px solid gray;
+      }
+      ul{
+        list-style: none;
+        line-height: 2;
+        
+      }
+      a{
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+
+
+    <script>
+      const API = "https://jsonplaceholder.typicode.com/users";
+      // console.log(API)
+      const container = document.querySelector(".container");
+      fetch(API)
+        .then((res) => res.json())
+        .then((data) => {
+          for (let i = 0; i < data.length; i++) {
+            container.innerHTML += `
+          <div class="items">
+    <h4>Name:${data[i].name}</h4>
+    <p>Username:${data[i].username}</p>
+    <p>I'D:${data[i].id}</p>
+    <ul>
+      <li>Email: <a href="mailto:${data[i].email}">${data[i].email}</a></li>
+      <li>Phone No#:<a href="tel:${data[i].phone}">${data[i].phone}</a></li>
+    </ul>
+    
+    
+
+
+      
+</div>
+        
+          `;
+          }
+        });
+    </script>
+  </body>
+</html>
